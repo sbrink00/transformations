@@ -17,6 +17,14 @@ def add_edge(matrix, x0, y0, z0, x1, y1, z1):
 def add_point(matrix, x, y, z=0):
     matrix.append([x, y, z, 1])
 
+def add_square(matrix, x0, y0, x1, y1):
+  add_edge(matrix, x0, y0, 0, x1, y0, 1)
+  add_edge(matrix, x0, y0, 0, x0, y1, 1)
+  add_edge(matrix, x0, y1, 0, x1, y1, 1)
+  add_edge(matrix, x1, y0, 0, x1, y1, 1)
+
+
+
 
 
 

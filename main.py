@@ -1,14 +1,23 @@
 from draw import *
 from transformations import *
+from display import *
 
-matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 0, 1, 2], [3, 4, 5, 6]]
-scale(matrix, 3, 4, 5)
-print(print_transform(matrix))
+transform = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+transform1 = [x for x in transform]
+m = new_matrix()
+c = [0, 255, 0]
+screen = new_screen()
+matrix = new_matrix()
+s = 100
+add_square(matrix, (XRES - s) / 2, (YRES - s) / 2, (XRES + s) / 2, (YRES + s) / 2)
 
-matrix1 = []
-for i in range(10):
-  add_point(matrix1, 0, 0, 0)
+scale(transform, .5, .5, .5)
+translate(transform1, 300, 300, 0)
+print(print_transform(transform1) + "\n")
+matrix_mult(transform, matrix)
+print(print_matrix(matrix) + "\n")
+matrix_mult(transform1, matrix)
+print(print_matrix(matrix) + "\n")
 
-translate(matrix, 1, 1, 1)
-matrix_mult(matrix, matrix1)
-print(print_matrix(matrix1))
+draw_lines(matrix, screen, c)
+save_ppm_ascii(screen, 'ascii.ppm')
