@@ -36,11 +36,13 @@ def print_transform(matrix):
     string += "\n"
   return string[:-1]
 
-
 #turn the paramter matrix into an identity matrix
 #you may assume matrix is square
 def ident(matrix):
-  if len(matrix) != 4: matrix = new_matrix()
+  while len(matrix) > 4:
+    del matrix[-1]
+  while len(matrix) < 4: matrix.append([])
+  for i in range(len(matrix)): matrix[i] = [0] * 4
   length = len(matrix)
   for i in range(length):
     for x in range(length):
