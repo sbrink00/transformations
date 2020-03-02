@@ -40,6 +40,7 @@ def print_transform(matrix):
 #turn the paramter matrix into an identity matrix
 #you may assume matrix is square
 def ident(matrix):
+  if len(matrix) != 4: matrix = new_matrix()
   length = len(matrix)
   for i in range(length):
     for x in range(length):
@@ -67,13 +68,15 @@ def matrix_mult( m1, m2 ):
     temp[3] = (m1[3][0] * m2[i][0]) + (m1[3][1] * m2[i][1]) + (m1[3][2] * m2[i][2]) + (m1[3][3] * m2[i][3])
     m2[i] = temp
 
-# m1 = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
-# ident(m1)
-# m2 = [[1, 2, 3, 4], [5, 6, 7, 8]]
-# print(print_matrix(m2))
-# print("")
-# matrix_mult(m1, m2)
-# print(print_matrix(m2))
+def transform_mult(t1, t2):
+  for i in range(4):
+    temp = [0, 0, 0, 0]
+    temp[0] = (t1[0][0] * t2[0][i]) + (t1[0][1] * t2[1][i]) + (t1[0][2] * t2[2][i]) + (t1[0][3] * t2[3][i])
+    temp[1] = (t1[1][0] * t2[0][i]) + (t1[1][1] * t2[1][i]) + (t1[1][2] * t2[2][i]) + (t1[1][3] * t2[3][i])
+    temp[2] = (t1[2][0] * t2[0][i]) + (t1[2][1] * t2[1][i]) + (t1[2][2] * t2[2][i]) + (t1[2][3] * t2[3][i])
+    temp[3] = (t1[3][0] * t2[0][i]) + (t1[3][1] * t2[1][i]) + (t1[3][2] * t2[2][i]) + (t1[3][3] * t2[3][i])
+    for x in range(4):
+      t2[x][i] = temp[x]
 
 def new_matrix(rows = 4, cols = 4):
     m = []
